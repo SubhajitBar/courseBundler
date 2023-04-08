@@ -6,7 +6,7 @@ import { sendToken } from "../utils/sendToken.js";
 import crypto from "crypto";
 import { Course } from "../models/Course.js";
 import cloudinary from "cloudinary";
-import getDataUri from "../utils/datauri.js";
+import getDataUri from "../utils/dataUri.js";
 import { Stats } from "../models/Stats.js";
 
 
