@@ -62,10 +62,13 @@ export const login = catchAsyncError(async (req, res, next) => {
 
 });
 
-export const logout = catchAsyncError(async (req, res, next) => {
+export const logout = catchAsyncError(async (req, res, next) => {   
 
     res.status(200).cookie("token", null, {
         expires: new Date(Date.now()),
+        httpOnly: true,
+        secure: true,
+        sameSite: "none",
 
     }).json({
         success: true,
@@ -305,9 +308,9 @@ export const deleteMyProfile = catchAsyncError(async (req, res, next) => {
     // Cancel Subscription
     await user.remove();
 
-    res.status(200).cookie("token", null,{
+    res.status(200).cookie("token", null, {
         expires: new Date(Date.now())
-    } ).json({
+    }).json({
         success: true,
         message: `User Deleted Successfully `,
     });
@@ -315,9 +318,9 @@ export const deleteMyProfile = catchAsyncError(async (req, res, next) => {
 });
 
 
-User.watch().on("change", async()=>{
-    const stats = await Stats.find({}).sort({createdAt: "desc"}).limit(1);
-    const subscription = await User.find({"subscription.status":"active"});
+User.watch().on("change", async () => {
+    const stats = await Stats.find({}).sort({ createdAt: "desc" }).limit(1);
+    const subscription = await User.find({ "subscription.status": "active" });
 
     stats[0].users = await User.countDocuments();
     stats[0].subscription = subscription.length;
