@@ -10,7 +10,7 @@ const router = express.Router();
 router.route("/courses").get(getAllCourses);
 
 // create new course - only admin
-router.route("/createcourses").post(isAuthenticated, authorizeAdmin, singleUpload, createCourses);
+router.route("/createcourse").post(isAuthenticated, authorizeAdmin, singleUpload, createCourses);
 
 // Add lecture, Delete Course, Get Course Details
 router.route("/course/:id").get(isAuthenticated, authorizeSubscribers, getCourseLecture).post(isAuthenticated, authorizeAdmin, singleUpload, addLecture).delete(isAuthenticated, authorizeAdmin, deleteCourse);
