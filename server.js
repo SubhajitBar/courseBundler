@@ -14,10 +14,10 @@ cloudinary.v2.config({
     api_secret: process.env.CLOUDINARY_CLIENT_SECRET,
 });
 
-export const instance =new RazorPay({
-    key_id: process.env.RAZORPAY_API_KEY,
-    key_secret: process.env.RAZORPAY_API_SECRET,
-  });
+export const instance = new RazorPay({
+  key_id: process.env.RAZORPAY_API_KEY,
+  key_secret: process.env.RAZORPAY_API_SECRET,
+});
 
 //   nodeCron.schedule("*=>sec *=>min *=>hrs *=>day *=>month *=>Years");
   nodeCron.schedule("0 0 0 1 * *", async()=>{
